@@ -41,4 +41,37 @@ public class JobTest {
 
     }
 
+    @Test
+    public void testToStringStartsAndEndsWithNewLine () {
+        Job firstJob = new Job("Mango",new Employer("John"),new Location("PA"),new PositionType("Cashier"),new CoreCompetency("Integrity"));
+
+        int numbers = firstJob.toString().length();
+        char ch = firstJob.toString().charAt(numbers-1);
+
+        char ch1 = firstJob.toString().charAt(0);
+
+       // System.out.println(firstJob.toString());
+      //  System.out.println(ch);
+       // System.out.println(ch1);
+
+        assertEquals(ch1,'\n');
+        assertEquals(ch,'\n');
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField () {
+        Job firstJob = new Job("",new Employer(""),new Location(""),new PositionType(""),new CoreCompetency(""));
+        firstJob.toString();
+
+        assertEquals(firstJob.getName(),"Data not available");
+        assertEquals(firstJob.getEmployer().toString(),"Data not available");
+        assertEquals(firstJob.getLocation().toString(),"Data not available");
+        assertEquals(firstJob.getPositionType().toString(),"Data not available");
+        assertEquals(firstJob.getCoreCompetency().toString(),"Data not available");
+
+        String data = firstJob.toString();
+        System.out.println(data);
+
+    }
+
 }
